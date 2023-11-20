@@ -118,23 +118,23 @@ export default function AlternateHeader() {
   }, [])
 
   useEffect(() => {
-    animate(animationSequence, { duration: 4 })
+    animate(animationSequence as any, { duration: 4 })
   }, [animationSequence])
 
   return (
-    <header className="relative flex flex-col items-center justify-center mt-32 mb-20 overflow-hidden md:mb-32 md:mt-24">
+    <header className="relative mb-20 mt-32 flex flex-col items-center justify-center overflow-hidden md:mb-32 md:mt-24">
       <div className="relative">
         <div className="relative grid grid-cols-3 gap-y-10 md:grid-cols-[3.5fr_1fr]">
           <div className="relative col-span-2 md:col-span-1">
-            <h1 className="flex items-center h-full p-6 text-5xl font-bold opacity-0 heading-1 font-Satoshi md:text-8xl md:font-bold">
+            <h1 className="heading-1 flex h-full items-center p-6 font-Satoshi text-5xl font-bold opacity-0 md:text-8xl md:font-bold">
               Creative
             </h1>
             <div className="line-2 absolute bottom-0 left-auto right-0 top-0 h-0 w-[1px] bg-white"></div>
           </div>
-          <div className="p-6 cursor-pointer figure-1">
+          <div className="figure-1 cursor-pointer p-6">
             <a href="#about">
               <Lottie
-                className="w-16 h-16 scroll-down-animation md:h-28 md:w-28"
+                className="scroll-down-animation h-16 w-16 md:h-28 md:w-28"
                 animationData={scrollAnimation}
                 loop={true}
               />
@@ -146,7 +146,7 @@ export default function AlternateHeader() {
         <div className="relative grid grid-cols-4 gap-y-10 overflow-hidden md:grid-cols-[2fr_3.5fr]">
           <div className="line-3 absolute left-0 top-0 h-[1px] w-0 bg-white"></div>
 
-          <div className="p-6 opacity-0 figure-2">
+          <div className="figure-2 p-6 opacity-0">
             <Lottie
               className="developer-animation h-14 w-14 md:h-28 md:w-28"
               animationData={developerAnimation}
@@ -158,14 +158,14 @@ export default function AlternateHeader() {
 
           <div className="relative col-span-3 justify-self-end md:col-span-1">
             <div className="line-4 absolute left-0 right-0 top-0 h-0 w-[1px] bg-white"></div>
-            <h1 className="flex items-center h-full p-6 text-5xl font-bold opacity-0 heading-2 font-Satoshi md:text-8xl">
+            <h1 className="heading-2 flex h-full items-center p-6 font-Satoshi text-5xl font-bold opacity-0 md:text-8xl">
               developer
             </h1>
           </div>
           <div className="line-5 absolute bottom-0 left-0 h-[1px] w-0 bg-white "></div>
         </div>
 
-        <div className="absolute top-0 hidden w-full h-full opacity-0 marquee -z-10 md:flex">
+        <div className="marquee absolute top-0 -z-10 hidden h-full w-full opacity-0 md:flex">
           <div className="absolute -left-[20%] bottom-0 top-0 h-[inherit] w-10 rotate-180 transform rounded-3xl border border-white border-opacity-20">
             <VerticalMarquee verticle marqueeTexts={leftMarqueeTexts} />
           </div>
@@ -176,16 +176,16 @@ export default function AlternateHeader() {
         </div>
       </div>
 
-      <div className="flex opacity-0 button mt-14">
+      <div className="button mt-14 flex opacity-0">
         <Link
           href="/about"
-          className="px-8 py-2 mr-6 text-lg font-bold border border-white rounded-sm md:px-16 md:py-4"
+          className="mr-6 rounded-sm border border-white px-8 py-2 text-lg font-bold md:px-16 md:py-4"
         >
           Projects
         </Link>
         <Link
           href="/contact"
-          className="px-8 py-2 text-lg font-bold text-black bg-white border rounded-sm hover:bg-transparent hover:text-white md:px-16 md:py-4"
+          className="rounded-sm border bg-white px-8 py-2 text-lg font-bold text-black hover:bg-transparent hover:text-white md:px-16 md:py-4"
         >
           Resume
         </Link>
