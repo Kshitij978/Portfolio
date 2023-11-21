@@ -32,6 +32,8 @@ const Modal: React.FC<ModalProps> = ({
   categoryData,
   onClose,
 }) => {
+  const activeCategorySplit = activeCategory.split(' ')
+
   return (
     <div className="fixed top-0 bottom-0 left-0 right-0 z-50 w-full h-screen overflow-auto">
       <div className="fixed top-0 bottom-0 left-0 right-0 bg-black"></div>
@@ -39,8 +41,9 @@ const Modal: React.FC<ModalProps> = ({
         <div className="grid grid-cols-[1fr_3fr] items-start  px-16 text-white">
           <h2 className="h-full text-6xl text-white border-r border-opacity-25 border-r-gray-200">
             <div className="flex flex-col gap-4 mt-32">
-              <div>Favorite</div>
-              <div>List</div>
+              {activeCategorySplit.map((item, index) => (
+                <div key={index}>{item}</div>
+              ))}
             </div>
           </h2>
 
@@ -90,7 +93,7 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
         return peopleData
       case 'Tools I use':
         return toolsData
-      case 'My Favorite List':
+      case 'Favorite List':
         return favoriteData
       default:
         return null
@@ -168,7 +171,7 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
   const listItems = [
     { text: 'People I follow', data: peopleData },
     { text: 'Tools I use', data: toolsData },
-    { text: 'My Favorite List', data: favoriteData },
+    { text: 'Favorite List', data: favoriteData },
   ]
 
   const headerText = ['Minimalist', '-', 'User-centric', '-', 'UX Enthusiast']
