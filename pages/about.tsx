@@ -38,25 +38,25 @@ const Modal: React.FC<ModalProps> = ({
     <div className="fixed top-0 bottom-0 left-0 right-0 z-50 w-full h-screen overflow-auto">
       <div className="fixed top-0 bottom-0 left-0 right-0 bg-black"></div>
       <div className="relative ">
-        <div className="grid grid-cols-[1fr_3fr] items-start  px-16 text-white">
-          <h2 className="h-full text-6xl text-white border-r border-opacity-25 border-r-gray-200">
-            <div className="flex flex-col gap-4 mt-32">
+        <div className="flex flex-col items-start px-16 text-white md:grid md:grid-cols-[1fr_3fr]">
+          <h2 className="h-full text-4xl text-white md:border-r md:border-r-gray-200 md:border-opacity-20 md:text-6xl">
+            <div className="flex gap-4 mt-32 md:flex-col">
               {activeCategorySplit.map((item, index) => (
                 <div key={index}>{item}</div>
               ))}
             </div>
           </h2>
 
-          <div className="mt-28">
+          <div className="mt-6 md:mt-28">
             {categoryData.map((category) => (
               <div
                 key={category._key}
-                className="grid w-4/5 grid-cols-2 px-4 py-6 border-b border-gray-200 border-opacity-25"
+                className="flex flex-col gap-4 py-6 border-b border-gray-200 border-opacity-25 md:grid md:grid-cols-2 md:px-4"
               >
                 <div className="text-lg font-light">{category.category}</div>
                 <ul>
                   {category.name.map((item: { name: string; _key: string }) => (
-                    <li className="text-xl font-normal" key={item._key}>
+                    <li className="py-2 text-xl font-normal" key={item._key}>
                       {item.name}
                     </li>
                   ))}
@@ -289,7 +289,6 @@ export async function getStaticProps() {
   const favoriteData = await client.fetch(favoriteQuery)
   const peopleData = await client.fetch(peopleQuery)
   const toolsData = await client.fetch(toolsQuery)
-  console.log(favoriteData[0].name)
   return {
     props: {
       data,
