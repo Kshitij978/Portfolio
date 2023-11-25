@@ -8,11 +8,7 @@ import { PortableText, PortableTextReactComponents } from '@portabletext/react'
 import Split from 'components/SplitText'
 import { useState } from 'react'
 import Head from 'next/head'
-
-interface ListItem {
-  text: string
-  data: any[]
-}
+import { ModalLayout } from 'components/Modals/ModalLayout'
 
 interface AboutProps {
   data: any
@@ -21,60 +17,19 @@ interface AboutProps {
   toolsData: any[]
 }
 
-interface ModalProps {
-  activeCategory: string
-  categoryData: any[] | null
-  onClose: () => void
+interface Tool {
+  name: string
+  category: string
+  subcategory: string
+  link: string
 }
 
-const Modal: React.FC<ModalProps> = ({
-  activeCategory,
-  categoryData,
-  onClose,
-}) => {
-  return (
-    <div className="fixed top-0 bottom-0 left-0 right-0 z-50 w-full h-screen overflow-auto">
-      <div className="fixed top-0 bottom-0 left-0 right-0 bg-black"></div>
-      <div className="relative ">
-        <div className="grid grid-cols-[1fr_3fr] items-start  px-16 text-white">
-          <h2 className="h-full text-6xl text-white border-r border-opacity-25 border-r-gray-200">
-            <div className="flex flex-col gap-4 mt-32">
-              <div>Favorite</div>
-              <div>List</div>
-            </div>
-          </h2>
-
-          <div className="mt-28">
-            {categoryData.map((category) => (
-              <div
-                key={category._key}
-                className="grid w-4/5 grid-cols-2 px-4 py-6 border-b border-gray-200 border-opacity-25"
-              >
-                <div className="text-lg font-light">{category.category}</div>
-                <ul>
-                  {category.name.map((item: { name: string; _key: string }) => (
-                    <li className="text-xl font-normal" key={item._key}>
-                      {item.name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="fixed cursor-pointer right-16 top-16 hover:border-b"
-        onClick={onClose}
-      >
-        <i className="text-lg ri-close-line"></i> Close
-      </div>
-    </div>
-  )
-}
-
-export default function About({ data, favoriteData, peopleData, toolsData }) {
+export default function About({
+  data,
+  favoriteData,
+  peopleData,
+  toolsByCategory,
+}) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -86,11 +41,11 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
 
   const getCategoryData = (category: string): any[] | null => {
     switch (category) {
-      case 'People I follow':
+      case 'people':
         return peopleData
-      case 'Tools I use':
-        return toolsData
-      case 'My Favorite List':
+      case 'tools':
+        return toolsByCategory
+      case 'favorite':
         return favoriteData
       default:
         return null
@@ -143,7 +98,7 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
       h2: ({ children }) => {
         const childArray = Array.isArray(children) ? children : [children] // Convert children to an array if it's not already
         return (
-          <h2 className="pb-10 text-xl font-normal leading-snug split-lines md:text-4xl">
+          <h2 className="split-lines pb-10 text-xl font-normal leading-snug md:text-4xl">
             {childArray.map((child: string, index: number) => (
               <Split key={index}>{child}</Split>
             ))}
@@ -154,7 +109,7 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
         const childArray = Array.isArray(children) ? children : [children] // Convert children to an array if it's not already
 
         return (
-          <p className="w-5/6 pb-4 font-thin leading-relaxed tracking-normal split-lines md:max-w-3xl md:text-xl">
+          <p className="split-lines w-5/6 pb-4 font-thin leading-relaxed tracking-normal md:max-w-3xl md:text-xl">
             {childArray.map((child: string, index: number) => (
               <Split key={index}>{child}</Split>
             ))}
@@ -166,9 +121,9 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
     hardBreak: false,
   }
   const listItems = [
-    { text: 'People I follow', data: peopleData },
-    { text: 'Tools I use', data: toolsData },
-    { text: 'My Favorite List', data: favoriteData },
+    { text: 'People I follow', index: 'people' },
+    { text: 'Tools I use', index: 'tools' },
+    { text: 'Favorite List', index: 'favorite' },
   ]
 
   const headerText = ['Minimalist', '-', 'User-centric', '-', 'UX Enthusiast']
@@ -179,9 +134,9 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
         <title>About Me | Kshitij Srivastava</title>
       </Head>
       <PageTransitionLayout>
-        <main className="w-4/5 mx-auto mt-28 md:mt-10">
+        <main className="mx-auto mt-28 w-4/5 md:mt-10">
           {isModalOpen && (
-            <Modal
+            <ModalLayout
               activeCategory={selectedCategory}
               categoryData={getCategoryData(selectedCategory)}
               onClose={() => {
@@ -190,14 +145,14 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
               }}
             />
           )}
-          <div className="relative flex flex-col items-center justify-center w-full">
+          <div className="relative flex w-full flex-col items-center justify-center">
             <div className=" top-8 h-[2px] w-full bg-white"></div>
             <motion.h1
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.8 }}
-              className="flex items-center justify-between w-full py-4 text-base font-bold md:py-20 md:text-6xl"
+              className="flex w-full items-center justify-between py-4 text-base font-bold md:py-20 md:text-6xl"
             >
               {headerText.map((text, index) => (
                 <motion.span
@@ -212,7 +167,7 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
             </motion.h1>
             <div className=" bottom-8 h-[2px] w-full bg-white"></div>
           </div>
-          <div className="flex justify-center w-full">
+          <div className="flex w-full justify-center">
             <Lottie
               animationData={aboutPageIllustration}
               style={{ width: 800, height: 'auto' }}
@@ -222,29 +177,29 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
             <div className="pb-12 md:w-28 md:pb-0">
               <h1 className="font-bold">WHO I AM</h1>
             </div>
-            <div className="w-full pl-6 border-l md:pl-14">
+            <div className="w-full border-l pl-6 md:pl-14">
               <PortableText value={data.description} components={components} />
             </div>
           </section>
 
-          <section className="py-10 mb-24 text-4xl border-white opacity-40 md:text-6xl">
+          <section className="mb-24 border-white py-10 text-4xl opacity-40 md:text-6xl">
             <HorizontalMarquee marqueeTexts={marqueeText} />
           </section>
 
-          <section className="flex flex-col items-center w-full gap-20 ">
-            <p className="relative flex justify-center w-full pt-4 mt-10 md:mt-20 ">
-              <i className="absolute p-6 text-6xl text-white ri-double-quotes-l left-50 -top-20 -z-50 opacity-80"></i>
-              <q className="text-2xl italic leading-normal tracking-wide text-center split-lines before:content-none after:content-none md:w-1/2 md:text-3xl">
+          <section className="flex w-full flex-col items-center gap-20 ">
+            <p className="relative mt-10 flex w-full justify-center pt-4 md:mt-20 ">
+              <i className="ri-double-quotes-l left-50 absolute -top-20 -z-50 p-6 text-6xl text-white opacity-80"></i>
+              <q className="split-lines text-center text-2xl italic leading-normal tracking-wide before:content-none after:content-none md:w-1/2 md:text-3xl">
                 <Split>
                   Happiness is a constant work in progress because solving
                   problems is a constant work in progress
                 </Split>
               </q>
             </p>
-            <span className="pb-20 -mt-10">- Mark Manson</span>
+            <span className="-mt-10 pb-20">- Mark Manson</span>
 
             <motion.ul
-              className="grid grid-cols-3 divide-x w-fit opacity-90 md:flex md:w-full md:items-center md:justify-center"
+              className="grid w-fit grid-cols-3 divide-x opacity-90 md:flex md:w-full md:items-center md:justify-center"
               variants={containerVariants}
               whileInView="show"
               viewport={{ once: true, amount: 0.8 }}
@@ -258,7 +213,7 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
                 >
                   <a
                     className="md:p-6"
-                    onClick={() => handleListItemClick(item.text)}
+                    onClick={() => handleListItemClick(item.index)}
                   >
                     {item.text}
                   </a>
@@ -280,19 +235,31 @@ export default function About({ data, favoriteData, peopleData, toolsData }) {
 export async function getStaticProps() {
   const query = `*[_type == 'about'][0]`
   const favoriteQuery = `*[_type == 'favorites']`
-  const peopleQuery = `*[_type == 'tools']`
-  const toolsQuery = `*[_type == 'people']`
+  const peopleQuery = `*[_type == 'people']`
+  const toolsQuery = `*[_type == 'tools']`
   const data = await client.fetch(query)
   const favoriteData = await client.fetch(favoriteQuery)
   const peopleData = await client.fetch(peopleQuery)
   const toolsData = await client.fetch(toolsQuery)
-  console.log(favoriteData[0].name)
+
+  // Group the tools by category
+  const toolsByCategory: { [category: string]: Tool[] } = toolsData.reduce(
+    (acc: { [category: string]: Tool[] }, tool: Tool) => {
+      if (!acc[tool.category]) {
+        acc[tool.category] = []
+      }
+      acc[tool.category].push(tool)
+      return acc
+    },
+    {}
+  )
+
   return {
     props: {
       data,
       favoriteData,
       peopleData,
-      toolsData,
+      toolsByCategory,
     },
   }
 }
