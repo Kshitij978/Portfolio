@@ -22,9 +22,13 @@ export const ModalLayout: React.FC<ModalProps> = ({
         <div className="flex flex-col items-start px-16 text-white md:grid md:grid-cols-[1fr_3fr]">
           <h2 className="h-full text-4xl text-white md:border-r md:border-r-gray-200 md:border-opacity-20 md:text-6xl">
             <div className="mt-32 flex gap-4 md:flex-col">
-              {activeCategorySplit.map((item, index) => (
-                <div key={index}>{item}</div>
-              ))}
+              {activeCategorySplit.map((item, index) => {
+                return (
+                  <div key={index} className="capitalize">
+                    {item}
+                  </div>
+                )
+              })}
             </div>
           </h2>
 
