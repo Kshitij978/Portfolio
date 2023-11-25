@@ -8,9 +8,13 @@ export default function PeopleModal({ data }) {
     >
       <div className="text-lg font-light">{item.name}</div>
 
-      <div className="text-lg font-light">{item?.youtube?.channel_name}</div>
+      <div className="text-lg font-light ">
+        <span className="border-b border-dotted">
+          {item?.youtube?.channel_name}
+        </span>
+      </div>
 
-      <div className="text-lg font-light ">{item.category}</div>
+      <div className="text-lg font-light opacity-70">{item.category}</div>
     </a>
   ))
 }
