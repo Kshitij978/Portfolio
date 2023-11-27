@@ -134,7 +134,7 @@ export default function About({
         <title>About Me | Kshitij Srivastava</title>
       </Head>
       <PageTransitionLayout>
-        <main className="mx-auto mt-28 w-4/5 md:mt-10">
+        <main className="mx-auto mt-28 w-4/5 lg:mt-10">
           {isModalOpen && (
             <ModalLayout
               activeCategory={selectedCategory}
