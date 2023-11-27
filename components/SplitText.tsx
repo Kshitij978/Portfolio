@@ -59,7 +59,7 @@ export default function Split({ children }: { children: ReactNode }) {
         children: ReactNode
       }) => (
         <motion.span
-          className="transform translate-y-full "
+          className="translate-y-full transform "
           variants={childVariants}
         >
           {children}

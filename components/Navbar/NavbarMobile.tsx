@@ -14,14 +14,17 @@ export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
   }
 
   return (
-    <nav className="fixed top-0 z-30 w-full backdrop-blur-md">
+    <nav className="sticky top-0 z-30 w-full before:absolute before:left-0 before:top-0 before:block before:h-full before:w-full before:backdrop-blur-md before:content-['']">
       <div
         className={`${
           isActive ? 'h-full' : 'h-auto'
         } relative mx-auto flex w-full justify-between p-6 md:static md:h-auto md:w-4/5 md:py-8`}
       >
         <div className="flex w-full justify-between">
-          <Link href="/" className="z-50 text-xl font-bold tracking-widest">
+          <Link
+            href="/"
+            className="z-50 text-lg font-bold tracking-widest md:text-xl"
+          >
             <span>KS &copy; 2023</span>
           </Link>
           <div
@@ -47,10 +50,9 @@ export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
         </div>
         <motion.ul
           variants={horizontalStaggerContainerVariantsMobile}
-          className="pointer-events-none absolute right-0 top-0 flex h-screen w-full flex-col items-end justify-center gap-10 pr-6 text-3xl font-bold"
+          className="pointer-events-none absolute right-0 top-0 flex h-screen w-full flex-col items-end justify-center gap-10 pr-6 text-3xl font-bold  before:absolute before:left-0 before:top-0 before:block before:h-full before:w-full before:backdrop-blur-md before:content-['']"
           initial="hidden"
           animate={isActive ? 'show' : 'exit'}
-          style={{ backdropFilter: 'blur(12px)' }}
         >
           {navLinks.map(([title, url]) => (
             <motion.li
