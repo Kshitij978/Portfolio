@@ -152,7 +152,7 @@ export default function About({
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.8 }}
-              className="flex w-full items-center justify-between py-4 text-base font-bold md:py-20 md:text-6xl"
+              className="flex w-full items-center justify-between py-5 text-sm font-bold md:py-10 md:text-3xl xl:py-20 xl:text-5xl"
             >
               {headerText.map((text, index) => (
                 <motion.span
@@ -209,10 +209,10 @@ export default function About({
                 <motion.li
                   key={index}
                   variants={childVariants}
-                  className="flex items-center justify-center p-4 text-base opacity-0 md:text-2xl"
+                  className="flex items-center justify-center p-4 text-base opacity-0 md:text-xl lg:text-2xl"
                 >
                   <a
-                    className="md:p-6"
+                    className="p-0 text-center md:p-6"
                     onClick={() => handleListItemClick(item.index)}
                   >
                     {item.text}
