@@ -49,6 +49,7 @@ export default function Contact() {
 
   return (
     <motion.div
+      id="contact"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.8 }}

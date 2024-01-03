@@ -8,7 +8,7 @@ export default function Navbar() {
     ['About', '/about'],
     ['Blogs', '/blogs'],
     ['Experiments', '/experiments'],
-    ['Contact Me', '/contact'],
+    ['Contact Me', '#contact'],
   ]
 
   const isMobile = useMediaQuery('(max-width: 768px)')

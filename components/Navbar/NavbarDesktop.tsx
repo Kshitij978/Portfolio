@@ -24,7 +24,11 @@ export default function NavbarDesktop({ navLinks }) {
               className="px-4 pointer-events-auto last-of-type:pr-4 md:px-8"
               key={title}
             >
-              <Link href={url}>{title}</Link>
+              {url.split('').at(0) === '#' ? (
+                <a href={url}>{title}</a>
+              ) : (
+                <Link href={url}>{title}</Link>
+              )}
             </motion.li>
           ))}
         </motion.ul>

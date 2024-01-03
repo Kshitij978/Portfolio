@@ -20,7 +20,7 @@ export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
           isActive ? 'h-full' : 'h-auto'
         } relative mx-auto flex w-full justify-between p-6 md:static md:h-auto md:w-4/5 md:py-8`}
       >
-        <div className="flex w-full justify-between">
+        <div className="flex justify-between w-full">
           <Link
             href="/"
             className="z-50 text-lg font-bold tracking-widest md:text-xl"
@@ -28,7 +28,7 @@ export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
             <span>KS &copy; 2023</span>
           </Link>
           <div
-            className="group z-50 flex h-fit cursor-pointer flex-col items-end gap-2 justify-self-end"
+            className="z-50 flex flex-col items-end gap-2 cursor-pointer group h-fit justify-self-end"
             onClick={handleNavToggle}
           >
             <div
@@ -57,10 +57,14 @@ export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
           {navLinks.map(([title, url]) => (
             <motion.li
               variants={horizontalStaggerChildVariants}
-              className="pointer-events-auto px-4 last-of-type:pr-4"
+              className="px-4 pointer-events-auto last-of-type:pr-4"
               key={title}
             >
-              <Link href={url}>{title}</Link>
+              {url.split('').at(0) === '#' ? (
+                <a href={url}>{title}</a>
+              ) : (
+                <Link href={url}>{title}</Link>
+              )}
             </motion.li>
           ))}
         </motion.ul>
