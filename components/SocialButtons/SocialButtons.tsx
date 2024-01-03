@@ -29,11 +29,6 @@ export default function SocialButtons() {
   }
   const socials = [
     {
-      name: 'instagram',
-      link: 'https://www.instagram.com/Kshitij.174/',
-      src: '/img/instagram.svg',
-    },
-    {
       name: 'github',
       link: 'https://github.com/Kshitij978',
       src: '/img/github.svg',
@@ -42,6 +37,11 @@ export default function SocialButtons() {
       name: 'linkedin',
       link: 'https://www.linkedin.com/in/kshitij-srivastava-1719651aa/',
       src: '/img/linkedin.svg',
+    },
+    {
+      name: 'twitter',
+      link: 'https://twitter.com/Kshitij__10',
+      src: '/img/twitter.svg',
     },
     {
       name: 'behance',
