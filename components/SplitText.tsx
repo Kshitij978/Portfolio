@@ -1,4 +1,4 @@
-import { SplitText } from './SplitText/SplitText'
+import { SplitText } from '../lib/SplitText/SplitText'
 import dynamic from 'next/dynamic'
 
 import { motion } from 'framer-motion'
@@ -23,12 +23,19 @@ const childVariants = {
     transition: { duration: 0.8, ease: [0.27, 0.85, 0.17, 0.97] },
   },
   show: {
-    y: ['100%', '0%'],
+    y: ['100%', '-5%'],
     transition: { duration: 0.8, ease: [0.27, 0.85, 0.17, 0.97] },
   },
 }
 
-export default function Split({ children }: { children: ReactNode }) {
+export default function Split({
+  children,
+  centerAlign,
+}: {
+  children: ReactNode
+  centerAlign?: boolean
+}) {
+  const css = centerAlign ? 'flex justify-center' : 'inline-flex'
   return (
     <TextSplit
       LineWrapper={({
@@ -39,7 +46,7 @@ export default function Split({ children }: { children: ReactNode }) {
         children: ReactNode
       }) => (
         <motion.span
-          className="inline-flex gap-2 overflow-hidden"
+          className={`${css} gap-2 overflow-y-hidden`}
           key={lineIndex}
           whileInView="show"
           viewport={{ once: true, amount: 0.8 }}
@@ -59,7 +66,7 @@ export default function Split({ children }: { children: ReactNode }) {
         children: ReactNode
       }) => (
         <motion.span
-          className="translate-y-full transform "
+          className="transform translate-y-full "
           variants={childVariants}
         >
           {children}

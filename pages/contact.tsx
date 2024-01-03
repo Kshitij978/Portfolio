@@ -87,7 +87,7 @@ export default function Contact() {
             l
           </motion.span>
           <motion.span className="inline-block" variants={letter}>
-            k
+            k&nbsp;
           </motion.span>
         </motion.span>
       </motion.div>
@@ -96,7 +96,7 @@ export default function Contact() {
           className="text-2xl font-thin italic text-white opacity-[0.8] md:text-4xl lg:text-5xl"
           href="mailto:kshitij.suraj@gmail.com"
         >
-          <Split>kshitij.suraj@gmail.com</Split>
+          <Split centerAlign>kshitij.suraj@gmail.com</Split>
         </a>
 
         <h2 className="pt-8 pb-6 text-2xl text-white">
