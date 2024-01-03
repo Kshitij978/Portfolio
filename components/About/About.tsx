@@ -43,8 +43,8 @@ export default function About() {
       >
         <br />
         <Split>
-          I&apos;m an Indian creative frontend web developer with a passion for
-          solving problems through simple & interactive designs
+          I&apos;m an Indian frontend web developer, passionate about solving
+          problems through clear and interactive designs.
         </Split>
         <br />
         <br />
