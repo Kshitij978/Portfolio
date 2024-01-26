@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useMediaQuery } from 'hooks/useMediaQuery'
+import { useMediaQuery } from 'utils/hooks/useMediaQuery'
 const NavbarMobile = dynamic(() => import('./NavbarMobile'), { ssr: false })
 const NavbarDesktop = dynamic(() => import('./NavbarDesktop'), { ssr: false })
 

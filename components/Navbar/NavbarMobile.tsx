@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import {
   horizontalStaggerChildVariants,
   horizontalStaggerContainerVariantsMobile,
-} from 'utils/anime'
+} from 'utils/constants/animation'
 
 export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
   const [isActive, setActive] = useState(false)
@@ -20,7 +20,7 @@ export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
           isActive ? 'h-full' : 'h-auto'
         } relative mx-auto flex w-full justify-between p-6 md:static md:h-auto md:w-4/5 md:py-8`}
       >
-        <div className="flex justify-between w-full">
+        <div className="flex w-full justify-between">
           <Link
             href="/"
             className="z-50 text-lg font-bold tracking-widest md:text-xl"
@@ -28,7 +28,7 @@ export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
             <span>KS &copy; 2023</span>
           </Link>
           <div
-            className="z-50 flex flex-col items-end gap-2 cursor-pointer group h-fit justify-self-end"
+            className="group z-50 flex h-fit cursor-pointer flex-col items-end gap-2 justify-self-end"
             onClick={handleNavToggle}
           >
             <div
@@ -57,7 +57,7 @@ export default function NavbarMobile({ navLinks }: { navLinks: string[][] }) {
           {navLinks.map(([title, url]) => (
             <motion.li
               variants={horizontalStaggerChildVariants}
-              className="px-4 pointer-events-auto last-of-type:pr-4"
+              className="pointer-events-auto px-4 last-of-type:pr-4"
               key={title}
             >
               {url.split('').at(0) === '#' ? (
