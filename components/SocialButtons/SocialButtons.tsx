@@ -1,32 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import {
+  socialIconContainerVariants,
+  socialIconVariants,
+} from 'utils/constants/animation'
 
 export default function SocialButtons() {
-  const transition = { duration: 0.8, ease: [0.6, 0.01, 0.05, 0.9] }
-
-  const containerVariants = {
-    visible: {
-      transition: {
-        staggerChildren: 0.12,
-        staggerDirection: 1,
-      },
-    },
-  }
-
-  // Variants for each letter.
-  const iconVariants = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ...transition },
-    },
-    hidden: {
-      opacity: 0,
-      y: 100,
-      transition: { duration: 0.8, ...transition },
-    },
-  }
   const socials = [
     {
       name: 'github',
@@ -54,8 +34,8 @@ export default function SocialButtons() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.8 }}
-      variants={containerVariants}
-      className="flex items-center gap-10 justify-evenly"
+      variants={socialIconContainerVariants}
+      className="flex items-center justify-evenly gap-10"
     >
       {socials.map(({ name, link, src }, index) => (
         <Link
@@ -65,7 +45,7 @@ export default function SocialButtons() {
           rel="noreferer noopener"
         >
           <motion.li
-            variants={iconVariants}
+            variants={socialIconVariants}
             className="rounded-full border-[2px] border-slate-300 p-2"
           >
             <Image src={src} width={20} height={20} alt={name} />

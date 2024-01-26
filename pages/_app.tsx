@@ -1,12 +1,12 @@
 import 'styles/globals.css'
 import 'remixicon/fonts/remixicon.css'
-import Navbar from 'components/Navbar/Navbar'
+// import Navbar from 'components/Navbar/Navbar'
 import Head from 'next/head'
 import { AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/router'
-import Contact from './contact'
-import { useEffect, useRef } from 'react'
-import Lenis from '@studio-freight/lenis'
+// import Contact from './contact'
+// import { useEffect, useRef } from 'react'
+// import Lenis from '@studio-freight/lenis'
 
 function MyApp({ Component, pageProps }) {
   // useEffect(() => {

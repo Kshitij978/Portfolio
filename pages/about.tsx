@@ -9,6 +9,10 @@ import Split from 'components/SplitText'
 import { useState } from 'react'
 import Head from 'next/head'
 import { ModalLayout } from 'components/Modals/ModalLayout'
+import {
+  aboutPagechildVariants,
+  aboutPagecontainerVariants,
+} from 'utils/constants/animation'
 
 interface AboutProps {
   data: any
@@ -72,27 +76,6 @@ export default function About({
     '-',
   ]
 
-  const containerVariants = {
-    show: {
-      transition: {
-        staggerChildren: 0.12,
-      },
-    },
-  }
-
-  const childVariants = {
-    hidden: {
-      opacity: 0,
-      x: '100%',
-      transition: { duration: 0.8, ease: [0.27, 0.85, 0.17, 0.97] },
-    },
-    show: {
-      opacity: 1,
-      x: ['100%', '0%'],
-      transition: { duration: 0.8, ease: [0.27, 0.85, 0.17, 0.97] },
-    },
-  }
-
   const components: Partial<PortableTextReactComponents> = {
     block: {
       h2: ({ children }) => {
@@ -148,7 +131,7 @@ export default function About({
           <div className="relative flex w-full flex-col items-center justify-center">
             <div className=" top-8 h-[2px] w-full bg-white"></div>
             <motion.h1
-              variants={containerVariants}
+              variants={aboutPagecontainerVariants}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.8 }}
@@ -157,7 +140,7 @@ export default function About({
               {headerText.map((text, index) => (
                 <motion.span
                   key={index}
-                  variants={childVariants}
+                  variants={aboutPagechildVariants}
                   transition={{ duration: 0.1 }}
                   className="opacity-0"
                 >
@@ -200,7 +183,7 @@ export default function About({
 
             <motion.ul
               className="grid w-fit grid-cols-3 divide-x opacity-90 md:flex md:w-full md:items-center md:justify-center"
-              variants={containerVariants}
+              variants={aboutPagecontainerVariants}
               whileInView="show"
               viewport={{ once: true, amount: 0.8 }}
               initial="hidden"
@@ -208,7 +191,7 @@ export default function About({
               {listItems.map((item, index) => (
                 <motion.li
                   key={index}
-                  variants={childVariants}
+                  variants={aboutPagechildVariants}
                   className="flex cursor-pointer items-center justify-center p-4 text-base opacity-0 md:text-xl lg:text-2xl"
                   onClick={() => handleListItemClick(item.index)}
                 >

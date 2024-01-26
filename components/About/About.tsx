@@ -1,38 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { backOut, easeOut, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Split from 'components/SplitText'
+import { animateLinkOnScroll } from 'utils/constants/animation'
 
 export default function About() {
-  const animateParaOnScroll = {
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 1, ease: easeOut },
-    },
-    hidden: {
-      y: 50,
-      opacity: 0,
-      transition: { duration: 1, ease: easeOut },
-    },
-  }
-  const animateLinkOnScroll = {
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 1, ease: backOut },
-    },
-    hidden: {
-      x: -500,
-      opacity: 0,
-      transition: { duration: 1, ease: backOut },
-    },
-  }
-
   return (
     <motion.div
       id="about"
-      className="relative flex flex-col w-4/5 mx-auto mb-24 md:mb-36 md:flex-row"
+      className="relative mx-auto mb-24 flex w-4/5 flex-col md:mb-36 md:flex-row"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.8 }}
@@ -50,7 +26,7 @@ export default function About() {
         <br />
       </p>
       <motion.div
-        className="flex items-center justify-end w-full"
+        className="flex w-full items-center justify-end"
         variants={animateLinkOnScroll}
       >
         <Link
@@ -64,7 +40,7 @@ export default function About() {
             fill
           />
           <Image
-            className="transition-opacity duration-200 opacity-0 animate-aboutMe invert hover:opacity-100"
+            className="animate-aboutMe opacity-0 invert transition-opacity duration-200 hover:opacity-100"
             alt="about_me"
             src="/img/about.svg"
             fill

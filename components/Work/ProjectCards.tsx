@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import Split from 'components/SplitText'
-import { motion, backOut } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { animateProjectIconsVariants } from 'utils/constants/animation'
 export default function ProjectCard({
   number,
   title,
@@ -10,18 +10,6 @@ export default function ProjectCard({
   github,
   live,
 }) {
-  const animateLinkOnScroll = {
-    visible: {
-      y: '0%',
-      opacity: 1,
-      transition: { duration: 0.8, ease: backOut, delay: 0.5 },
-    },
-    hidden: {
-      y: '100%',
-      opacity: 0,
-      transition: { duration: 0.8, ease: backOut, delay: 0.5 },
-    },
-  }
   return (
     <div className="flex gap-12">
       <span className="hidden pt-3 font-Outrun text-6xl font-bold italic opacity-90 md:inline-block">
@@ -41,7 +29,7 @@ export default function ProjectCard({
             whileInView="visible"
             viewport={{ once: true, amount: 0.8 }}
           >
-            <motion.li variants={animateLinkOnScroll}>
+            <motion.li variants={animateProjectIconsVariants}>
               <a
                 href={live}
                 className="rounded-full border-[2px] border-white p-2"
@@ -51,7 +39,7 @@ export default function ProjectCard({
               </a>
             </motion.li>
 
-            <motion.li variants={animateLinkOnScroll}>
+            <motion.li variants={animateProjectIconsVariants}>
               <a
                 href={github}
                 className="rounded-full border-[2px] border-white p-2"
