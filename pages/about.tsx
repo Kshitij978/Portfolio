@@ -98,7 +98,7 @@ export default function About({
       h2: ({ children }) => {
         const childArray = Array.isArray(children) ? children : [children] // Convert children to an array if it's not already
         return (
-          <h2 className="pb-10 text-xl font-normal leading-snug split-lines md:text-4xl">
+          <h2 className="split-lines pb-10 text-xl font-normal leading-snug md:text-4xl">
             {childArray.map((child: string, index: number) => (
               <Split key={index}>{child}</Split>
             ))}
@@ -109,7 +109,7 @@ export default function About({
         const childArray = Array.isArray(children) ? children : [children] // Convert children to an array if it's not already
 
         return (
-          <p className="w-5/6 pb-4 font-thin leading-relaxed tracking-normal split-lines md:max-w-3xl md:text-xl">
+          <p className="split-lines w-5/6 pb-4 font-thin leading-relaxed tracking-normal md:max-w-3xl md:text-xl">
             {childArray.map((child: string, index: number) => (
               <Split key={index}>{child}</Split>
             ))}
@@ -134,7 +134,7 @@ export default function About({
         <title>About Me | Kshitij Srivastava</title>
       </Head>
       <PageTransitionLayout>
-        <main className="w-4/5 mx-auto mt-28 lg:mt-10">
+        <main className="mx-auto mt-28 w-4/5 lg:mt-10">
           {isModalOpen && (
             <ModalLayout
               activeCategory={selectedCategory}
@@ -145,14 +145,14 @@ export default function About({
               }}
             />
           )}
-          <div className="relative flex flex-col items-center justify-center w-full">
+          <div className="relative flex w-full flex-col items-center justify-center">
             <div className=" top-8 h-[2px] w-full bg-white"></div>
             <motion.h1
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.8 }}
-              className="flex items-center justify-between w-full py-5 text-sm font-bold md:py-10 md:text-3xl xl:py-20 xl:text-5xl"
+              className="flex w-full items-center justify-between py-5 text-sm font-bold md:py-10 md:text-3xl xl:py-20 xl:text-5xl"
             >
               {headerText.map((text, index) => (
                 <motion.span
@@ -167,7 +167,7 @@ export default function About({
             </motion.h1>
             <div className=" bottom-8 h-[2px] w-full bg-white"></div>
           </div>
-          <div className="flex justify-center w-full">
+          <div className="flex w-full justify-center">
             <Lottie
               animationData={aboutPageIllustration}
               style={{ width: 800, height: 'auto' }}
@@ -177,29 +177,29 @@ export default function About({
             <div className="pb-12 md:w-28 md:pb-0">
               <h1 className="font-bold">WHO I AM</h1>
             </div>
-            <div className="w-full pl-6 border-l md:pl-14">
+            <div className="w-full border-l pl-6 md:pl-14">
               <PortableText value={data.description} components={components} />
             </div>
           </section>
 
-          <section className="py-10 mb-24 text-4xl border-white opacity-40 md:text-6xl">
+          <section className="mb-24 border-white py-10 text-4xl opacity-40 md:text-6xl">
             <HorizontalMarquee marqueeTexts={marqueeText} />
           </section>
 
-          <section className="flex flex-col items-center w-full gap-20 ">
-            <p className="relative flex justify-center w-full pt-4 mt-10 md:mt-20 ">
-              <i className="absolute p-6 text-6xl text-white ri-double-quotes-l left-50 -top-20 -z-50 opacity-80"></i>
-              <q className="text-2xl italic leading-normal tracking-wide text-center split-lines before:content-none after:content-none md:w-1/2 md:text-3xl">
+          <section className="flex w-full flex-col items-center gap-20 ">
+            <p className="relative mt-10 flex w-full justify-center pt-4 md:mt-20 ">
+              <i className="ri-double-quotes-l left-50 absolute -top-20 -z-50 p-6 text-6xl text-white opacity-80"></i>
+              <q className="split-lines text-center text-2xl italic leading-normal tracking-wide before:content-none after:content-none md:w-1/2 md:text-3xl">
                 <Split centerAlign>
                   Happiness is a constant work in progress because solving
                   problems is a constant work in progress
                 </Split>
               </q>
             </p>
-            <span className="pb-20 -mt-10">- Mark Manson</span>
+            <span className="-mt-10 pb-20">- Mark Manson</span>
 
             <motion.ul
-              className="grid grid-cols-3 divide-x w-fit opacity-90 md:flex md:w-full md:items-center md:justify-center"
+              className="grid w-fit grid-cols-3 divide-x opacity-90 md:flex md:w-full md:items-center md:justify-center"
               variants={containerVariants}
               whileInView="show"
               viewport={{ once: true, amount: 0.8 }}
@@ -209,14 +209,10 @@ export default function About({
                 <motion.li
                   key={index}
                   variants={childVariants}
-                  className="flex items-center justify-center p-4 text-base opacity-0 md:text-xl lg:text-2xl"
+                  className="flex cursor-pointer items-center justify-center p-4 text-base opacity-0 md:text-xl lg:text-2xl"
+                  onClick={() => handleListItemClick(item.index)}
                 >
-                  <a
-                    className="p-0 text-center md:p-6"
-                    onClick={() => handleListItemClick(item.index)}
-                  >
-                    {item.text}
-                  </a>
+                  <span className="p-0 text-center md:p-6">{item.text}</span>
                 </motion.li>
               ))}
             </motion.ul>
