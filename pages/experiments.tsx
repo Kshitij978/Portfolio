@@ -4,6 +4,10 @@ export default function experiments() {
   return (
     <PageTransitionLayout>
       <div className="mx-auto flex h-max w-4/5 flex-col gap-10 py-20">
+        <h1 className="text-5xl">Experiments</h1>
+        <h2 className="text-2xl text-gray-300">
+          These are some of my experimental projects
+        </h2>
         <iframe
           src="https://codesandbox.io/embed/prod-sea-53ql5f?autoresize=1&fontsize=14&hidenavigation=1&theme=dark"
           className="w-full"
