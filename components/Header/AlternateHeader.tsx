@@ -1,4 +1,5 @@
-import Link from 'next/link'
+'use client'
+
 import { animate } from 'framer-motion'
 import React, { useEffect, useMemo } from 'react'
 import VerticalMarquee from '../Marquee'

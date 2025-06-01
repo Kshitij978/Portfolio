@@ -1,10 +1,12 @@
-import { useRouter } from 'next/router'
+'use client'
+
+import { useRouter } from 'next/navigation'
 
 export default function Blog() {
   const router = useRouter()
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-6 text-white bg-black">
-      <h1 className="text-6xl font-bold leading-normal tracking-tighter text-center sm:text-5xl md:text-6xl">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-black px-4 py-6 text-white">
+      <h1 className="text-center text-6xl font-bold leading-normal tracking-tighter sm:text-5xl md:text-6xl">
         Coming Soon!
       </h1>
       <img
@@ -18,7 +20,7 @@ export default function Blog() {
         }}
         width="300"
       />
-      <p className="my-4 text-xl text-center text-gray-300">
+      <p className="my-4 text-center text-xl text-gray-300">
         I'm working on something exciting for you. Stay tuned!
       </p>
 

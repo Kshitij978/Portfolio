@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import Split from 'components/SplitText'
 import { motion } from 'framer-motion'
