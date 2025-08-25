@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion'
+'use client'
 
-import SocialButtons from '../components/SocialButtons/SocialButtons'
+import { motion } from 'framer-motion'
+import SocialButtons from '../SocialButtons/SocialButtons'
 import Split from 'components/SplitText'
 import {
   firstWordVariants,

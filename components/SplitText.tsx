@@ -1,3 +1,5 @@
+'use client'
+
 import { SplitText } from '../lib/SplitText/SplitText'
 import dynamic from 'next/dynamic'
 

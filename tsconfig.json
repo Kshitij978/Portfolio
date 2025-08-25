@@ -12,13 +12,20 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "utils/scrollAnimation.js"
+    "utils/scrollAnimation.js",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
